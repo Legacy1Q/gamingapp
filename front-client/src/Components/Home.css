@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Allow page-wide scrolling */
+  }
+  
+  .home {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh; /* Ensure it spans at least the viewport height */
+    overflow: visible;
+  }
+  
+  .hero-section {
+    position: relative;
+    min-height: 100vh; /* Full viewport height for the hero section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  
+  .games-section,
+  .forum-section {
+    min-height: 50vh;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9; /* Add background for visibility */
+  }
+  
+  .games-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .game-image {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+  }
+  
+  .forum-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .forum-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  

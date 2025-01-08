@@ -109,4 +109,9 @@
     background-color: #3A506B;
     color: #6FFFE9;
   }
+
+  nav a::first-letter {
+    color: #6FFFE9;
+    font-weight: bold;
+  }
   

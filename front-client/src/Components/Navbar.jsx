@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -8,7 +10,9 @@ const Navbar = () => {
         <a href="/" className="logo">Logo</a>
         <div className="search-bar">
           <input type="text" placeholder="Search..." />
-          <button type="button">Search</button>
+          <button type="button">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
         </div>
         <a href="/" className="login">Login</a>
       </div>
