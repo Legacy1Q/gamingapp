@@ -1,0 +1,40 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%; /* Ensures the page allows scrolling */
+    overflow-y: auto; /* Adds vertical scrolling when needed */
+    margin: auto;
+  }
+  
+  #root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Or center if you want the content vertically centered */
+    align-items: stretch; /* Ensures full width */
+}
+
+.app-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+  
+  /* Add a margin or spacing between sections */
+  section {
+    padding: 20px;
+  }
+  
+  /* Optional: Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+
+
+  
+  
