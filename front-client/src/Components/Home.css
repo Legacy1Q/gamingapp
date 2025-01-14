@@ -19,8 +19,67 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    overflow: hidden; /* Prevent overflow caused by the video */
   }
+  
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the hero section without distortion */
+    z-index: -1; /* Places the video behind the content */
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1; /* Places the content above the video */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for better contrast */
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    color: transparent;
+    background-image: linear-gradient(90deg, #ff6b6b, #f9ca24, #1dd1a1, #54a0ff);
+    background-size: 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: gradient-animation 6s infinite linear;
+    margin: 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hero-content h1:hover {
+    transform: scale(1.1); /* Grows slightly on hover */
+    filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.5)); /* Glow effect */
+  }
+  
+  /* Keyframe for gradient animation */
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }  
+  
   
   .games-section,
   .forum-section {
@@ -44,11 +103,77 @@ html, body {
   
   .forum-section {
     display: flex;
-    flex-direction: column;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-between; /* Ensure even spacing between image and topics */
+    gap: 20px; /* Adds space between the image and topics */
+    padding: 20px;
+    background-color: #f9f9f9; /* Keeps the background for visibility */
+  }
+  
+  .forum-image-container {
+    flex: 1; /* Allows the image to take up available space */
+    max-width: 50%; /* Restricts the image container width */
+  }
+  
+  .forum-image-container img {
+    width: 100%; /* Ensures the image scales responsively */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 10px; /* Adds rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+  }
+  
+  .list-container {
+    flex: 1; /* Allows the list container to take up available space */
+    padding: 20px;
+  }
+  
+  .list-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333; /* Makes the heading more prominent */
   }
   
   .forum-list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
+  
+  .forum-list-items {
+    font-size: 1rem;
+    color: #555;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Adds separation between topics */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .forum-list-items:hover {
+    color: #007bff; /* Highlight the topic on hover */
+    transform: translateX(5px); /* Adds slight movement for interactivity */
+  }
+  
+  /* Hide the scrollbar by default */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+  background: transparent; /* Make the track invisible */
+}
+
+/* Show the scrollbar on hover or during scroll */
+::-webkit-scrollbar-thumb {
+  background: rgba(5, 235, 243, 0.5); /* Add a visible scrollbar thumb */
+  border-radius: 4px; /* Optional: Rounded scrollbar thumb */
+  transition: background 0.3s ease;
+}
+
+/* When scrolling or hovering over the scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(5, 235, 243, 0.5); /* Make it more visible on hover */
+}
+
+/* Hide scrollbar in other browsers but maintain scroll functionality */
+body {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
   
