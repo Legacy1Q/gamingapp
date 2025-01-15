@@ -152,6 +152,7 @@ html, body {
     transform: translateX(5px); /* Adds slight movement for interactivity */
   }
   
+  
   /* Hide the scrollbar by default */
 ::-webkit-scrollbar {
   width: 8px; /* Set the width of the scrollbar */
@@ -160,14 +161,14 @@ html, body {
 
 /* Show the scrollbar on hover or during scroll */
 ::-webkit-scrollbar-thumb {
-  background: rgba(5, 235, 243, 0.5); /* Add a visible scrollbar thumb */
+  background: rgba(0, 0, 0, 0.5); /* Add a visible scrollbar thumb */
   border-radius: 4px; /* Optional: Rounded scrollbar thumb */
   transition: background 0.3s ease;
 }
 
 /* When scrolling or hovering over the scrollbar */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(5, 235, 243, 0.5); /* Make it more visible on hover */
+  background: rgba(0, 0, 0, 0.8); /* Make it more visible on hover */
 }
 
 /* Hide scrollbar in other browsers but maintain scroll functionality */
@@ -175,5 +176,6 @@ body {
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
 }
+
 
   
