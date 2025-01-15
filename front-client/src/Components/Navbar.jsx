@@ -1,28 +1,29 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css';
+import { Link, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <header>
+    <header className="navbar">
       {/* Top Row: Logo, Search Bar, Login */}
       <div className="top-row">
-        <a href="/" className="logo">Logo</a>
+        <Link to="/" className="logo">Logo</Link>
         <div className="search-bar">
           <input type="text" placeholder="Search..." />
-          <button type="button">
+          <button type="button" className="search-button">
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
-        <a href="/" className="login">Login</a>
+        <Link to="/login" className="login">Login</Link>
       </div>
 
       {/* Navigation Links */}
-      <nav>
-        <a href="/">Games</a>
-        <a href="/">Community</a>
-        <a href="/">About</a>
-        <a href="/">Support</a>
+      <nav className="nav-links">
+        <NavLink to="/games" activeClassName="active-link">Games</NavLink>
+        <NavLink to="/community" activeClassName="active-link">Community</NavLink>
+        <NavLink to="/about" activeClassName="active-link">About</NavLink>
+        <NavLink to="/support" activeClassName="active-link">Support</NavLink>
       </nav>
     </header>
   );
