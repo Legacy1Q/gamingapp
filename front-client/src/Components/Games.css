@@ -1,4 +1,4 @@
-.games-container {
+  .games-container {
     padding: 20px;
   }
   
@@ -13,7 +13,7 @@
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    background: #f9f9f9;
+    background: #1C2541;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
   }

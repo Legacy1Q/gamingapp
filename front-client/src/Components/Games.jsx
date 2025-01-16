@@ -1,24 +1,13 @@
 import { useState } from "react";
+import thumbnail from "../assets/thumbnail.png";
 import "./Games.css";
 
 const games = [
   {
     id: "1",
-    title: "Game One",
-    image: "https://via.placeholder.com/300",
+    title: "Obstacle Course",
+    image: thumbnail,
     description: "This is the first game.",
-  },
-  {
-    id: "2",
-    title: "Game Two",
-    image: "https://via.placeholder.com/300",
-    description: "This is the second game.",
-  },
-  {
-    id: "3",
-    title: "Game Three",
-    image: "https://via.placeholder.com/300",
-    description: "This is the third game.",
   },
 ];
 
