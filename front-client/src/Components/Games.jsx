@@ -5,9 +5,10 @@ import "./Games.css";
 const games = [
   {
     id: "1",
-    title: "Obstacle Course",
+    title: "Unity Obstacle Course",
     image: thumbnail,
-    description: "This is the first game.",
+    description: "This is a Unity WebGL game.",
+    url: "https://play.unity.com/en/games/5d1951e3-a291-4562-ac6e-568220dc5c3f/my-fps-game", // Replace with your Unity WebGL game's URL
   },
 ];
 
@@ -36,6 +37,14 @@ const Games = () => {
             className="game-detail-image"
           />
           <p>{selectedGame.description}</p>
+          <div className="game-frame">
+            <iframe
+              src={selectedGame.url}
+              title={selectedGame.title}
+              className="game-iframe"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       ) : (
         <div className="games-list">
