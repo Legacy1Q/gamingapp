@@ -1,29 +1,31 @@
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import "./Navbar.css";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const getLinkClass = ({ isActive }) => (isActive ? "active-link" : undefined);
+
   return (
     <header className="navbar">
-      {/* Top Row: Logo, Search Bar, Login */}
       <div className="top-row">
-        <Link to="/" className="logo">Logo</Link>
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." />
-          <button type="button" className="search-button">
+        <Link to="/" className="logo">GameHub</Link>
+
+        <form className="search-bar" onSubmit={(event) => event.preventDefault()}>
+          <input type="text" placeholder="Search games..." aria-label="Search games" />
+          <button type="submit" className="search-button" aria-label="Search">
             <FontAwesomeIcon icon={faSearch} />
           </button>
-        </div>
+        </form>
+
         <Link to="/login" className="login">Login</Link>
       </div>
 
-      {/* Navigation Links */}
-      <nav className="nav-links">
-        <NavLink to="/games" activeClassName="active-link">Games</NavLink>
-        <NavLink to="/community" activeClassName="active-link">Community</NavLink>
-        <NavLink to="/about" activeClassName="active-link">About</NavLink>
-        <NavLink to="/support" activeClassName="active-link">Support</NavLink>
+      <nav className="nav-links" aria-label="Main navigation">
+        <NavLink to="/games" className={getLinkClass}>Games</NavLink>
+        <NavLink to="/community" className={getLinkClass}>Community</NavLink>
+        <NavLink to="/about" className={getLinkClass}>About</NavLink>
+        <NavLink to="/support" className={getLinkClass}>Support</NavLink>
       </nav>
     </header>
   );

@@ -1,7 +1,8 @@
 import twitterIcon from '../assets/twitter.png';
 import instagramIcon from '../assets/instagram.png';
 import linkedInIcon from '../assets/linkedin.png';
-import './Footer.css';
+import { Link } from 'react-router-dom';
+import '../styles/Footer.css';
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         {/* Left Section: Footer links and mock website name */}
         <div className="footer-links-container">
           <div className="footer-links">
-            <a href="#games">Games</a>
+            <Link to="/games">Games</Link>
             <a href="#community">Community</a>
             <a href="#about">About</a>
             <a href="#support">Support</a>
@@ -18,7 +19,7 @@ const Footer = () => {
           <div className="footer-line"></div> {/* Line under the links */}
         </div>
 
-        <div className="mock-website-name">MyMockWebsite</div>
+        <div className="mock-website-name">POP Gaming Platform © 2026</div>
 
         {/* Right Section: Social Media Icons moved to far right */}
         <div className="footer-right">

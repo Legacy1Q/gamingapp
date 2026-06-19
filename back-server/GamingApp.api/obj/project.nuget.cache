@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Li7qHELKFdI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\misimsr\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.6\\microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "C:\\Users\\misimsr\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "eiAcmUYo+mk106uj1zVQBOC2+8vDDCub48Oqbvqzdp0=",
+  "Source": "GamingApp.api",
+  "BasePath": "_content/GamingApp.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

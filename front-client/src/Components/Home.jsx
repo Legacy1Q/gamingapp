@@ -1,73 +1,82 @@
-import videoFile from '../assets/stock_video_2.mp4';
-import { useState } from 'react';
-import './Home.css';
+import videoFile from "../assets/stock_video_2.mp4";
+import thumbnail from "../assets/thumbnail.png";
+import "../styles/Home.css";
+
+const featuredGames = [
+  {
+    title: "Unity Obstacle Course",
+    image: thumbnail,
+    description: "Run, dodge, and survive your first hosted Unity game.",
+  },
+];
+
+const forumTopics = [
+  "Share your highest scores",
+  "Suggest new game ideas",
+  "Report bugs and feedback",
+  "Behind-the-scenes dev updates",
+];
 
 const Home = () => {
-   const [imageIndex, setImageIndex] = useState(0);
-
-   const images = [
-    '/images/image1.jpg',  // Replace with your image paths
-    '/images/image2.jpg',
-    '/images/image3.jpg'
-  ];
-
-  const moveLeft = () => {
-    setImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  };
-
-  const moveRight = () => {
-    setImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-  };
-
-  const forumTopics = [
-    "How to start learning React?",
-    "Best practices for JavaScript developers",
-    "CSS tricks for responsive design",
-    "Understanding useState and useEffect",
-    "How to deploy a React app?",
-  ];
-
   return (
     <div className="home">
-      <div className="hero-section">
+      <section className="hero-section">
         <video autoPlay muted loop playsInline className="video-background">
-            <source src={videoFile} type="video/mp4" />
-            Your browser does not support the video tag.
+          <source src={videoFile} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
+
+        <div className="hero-overlay" />
+
         <div className="hero-content">
-            <h1>Welcome to My Website</h1>
+          <p className="eyebrow">Indie Games • Community • Updates</p>
+          <h1>Welcome to GameHub</h1>
+          <p className="hero-subtitle">
+            A home for the games you create, launch, and share with players.
+          </p>
+          <a href="/games" className="hero-button">Browse Games</a>
         </div>
-      </div>
+      </section>
 
-      <div className="games-section">
-        <button className="arrow left" onClick={moveLeft}>←</button>
-        <div className="games-image-container">
-            <img src={images[imageIndex]} alt="game" className="game-image" />
+      <section className="games-section">
+        <div className="section-copy">
+          <p className="eyebrow">Featured</p>
+          <h2>Latest Game</h2>
+          <p>Start with one strong playable game, then grow the library over time.</p>
         </div>
-        <button className="arrow right" onClick={moveRight}>→</button>
-      </div>
 
-      <div className='forum-section'>
-        <div className='forum-image-container'> 
-            <img 
-                src="https://via.placeholder.com/300" 
-                alt="Forum illustration" 
-                className='image'
-            />
+        <div className="featured-grid">
+          {featuredGames.map((game) => (
+            <article className="featured-card" key={game.title}>
+              <img src={game.image} alt={game.title} />
+              <div>
+                <h3>{game.title}</h3>
+                <p>{game.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
-        <div className='list-container'>
-            <h2>Forum Topics</h2>
-            <ul className='forum-list'>
-                {forumTopics.map((topic, index) => (
-                    <li key={index} className='forum-list-items'>
-                        {topic}
-                    </li>
-                ))}
-            </ul>
+      </section>
+
+      <section className="forum-section">
+        <div className="forum-image-container">
+          <div className="community-card">
+            <span>GG</span>
+          </div>
         </div>
-      </div>
+
+        <div className="list-container">
+          <p className="eyebrow">Community</p>
+          <h2>Forum Topics</h2>
+          <ul className="forum-list">
+            {forumTopics.map((topic) => (
+              <li key={topic} className="forum-list-items">{topic}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
