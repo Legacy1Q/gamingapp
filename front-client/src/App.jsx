@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Games from "./Components/Games";
 import Footer from "./Components/Footer";
+import GamesList from "./Connector/GamesList";
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/games" element={<Games />} />
+            <Route path="/games" element={<GamesList />} />
             <Route path="/community" element={<Home />} />
             <Route path="/about" element={<Home />} />
             <Route path="/support" element={<Home />} />
