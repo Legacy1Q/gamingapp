@@ -1,9 +1,12 @@
 using GamingApp.api.Models;
 using GamingApp.api.Data;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +29,7 @@ var app = builder.Build();
 
 app.UseCors("AllowReactApp");
 
+<<<<<<< HEAD
 app.UseDefaultFiles();
 
 var provider = new FileExtensionContentTypeProvider();
@@ -38,6 +42,8 @@ app.UseStaticFiles(new StaticFileOptions
     ContentTypeProvider = provider
 });
 
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -45,7 +51,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 app.MapGet("/games", async (AppDbContext db) =>
 {
     return await db.Games.ToListAsync();
@@ -71,8 +80,12 @@ app.MapPost("/games", async (CreateGameRequest request, AppDbContext db) =>
         Description = request.Description,
         DeveloperName = request.DeveloperName,
         CreatedAt = DateTime.UtcNow,
+<<<<<<< HEAD
         IsPublished = false,
         PlayUrl = request.PlayUrl
+=======
+        IsPublished = false
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
     };
 
     db.Games.Add(newGame);
@@ -84,6 +97,7 @@ app.MapPost("/games", async (CreateGameRequest request, AppDbContext db) =>
     );
 });
 
+<<<<<<< HEAD
 app.MapPost("/games/{id}/upload", async (int id, IFormFile file, AppDbContext db, IWebHostEnvironment env) =>
 {
     var game = await db.Games.FindAsync(id);
@@ -145,6 +159,8 @@ app.MapPost("/games/{id}/upload", async (int id, IFormFile file, AppDbContext db
     });
 });
 
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 app.MapPut("/games/{id}", async (int id, UpdateGameRequest request, AppDbContext db) =>
 {
     var game = await db.Games.FindAsync(id);
@@ -158,7 +174,10 @@ app.MapPut("/games/{id}", async (int id, UpdateGameRequest request, AppDbContext
     game.Genre = request.Genre;
     game.Description = request.Description;
     game.DeveloperName = request.DeveloperName;
+<<<<<<< HEAD
     game.PlayUrl = request.PlayUrl;
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
     await db.SaveChangesAsync();
 
     return Results.Ok(game);

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\mdsim\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj": {}
   },
   "projects": {
@@ -20,17 +21,39 @@
           "C:\\Users\\mdsim\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+    "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj",
+        "projectName": "GamingApp.api",
+        "projectPath": "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\GamingApp.api.csproj",
+        "packagesPath": "C:\\Users\\misimsr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\misimsr\\gamingapp\\back-server\\GamingApp.api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\misimsr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+<<<<<<< HEAD
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+<<<<<<< HEAD
             "framework": "net9.0",
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -45,11 +68,18 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
+<<<<<<< HEAD
         "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
           "framework": "net9.0",
+=======
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
@@ -90,7 +120,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
         }
       }
     }

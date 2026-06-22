@@ -122,7 +122,11 @@
 
 .featured-card img {
   width: 100%;
+<<<<<<< HEAD
   height: 450px;
+=======
+  height: 260px;
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
   object-fit: cover;
   display: block;
 }
@@ -135,11 +139,14 @@
   margin: 0 0 0.5rem;
 }
 
+<<<<<<< HEAD
 .featured-card-link {
   text-decoration: none;
   color: inherit;
 }
 
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 .forum-section {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

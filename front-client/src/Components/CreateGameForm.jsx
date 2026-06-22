@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 import { useState } from "react";
 
 function CreateGameForm({ onGameCreated }) {
@@ -52,4 +55,8 @@ function CreateGameForm({ onGameCreated }) {
   );
 }
 
+<<<<<<< HEAD
 export default CreateGameForm;
+=======
+export default CreateGameForm;
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee

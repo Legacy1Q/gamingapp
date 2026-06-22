@@ -1,12 +1,20 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import thumbnail2 from "../assets/thumbnail2.png";
+=======
+import thumbnail from "../assets/thumbnail.png";
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 import "../styles/Games.css";
 
 const games = [
   {
     id: "1",
     title: "Unity Obstacle Course",
+<<<<<<< HEAD
     image: thumbnail2,
+=======
+    image: thumbnail,
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
     description: "A playable Unity WebGL obstacle course hosted through Unity Play.",
     url: "https://play.unity.com/en/games/5d1951e3-a291-4562-ac6e-568220dc5c3f/my-fps-game",
   },

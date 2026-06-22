@@ -144,6 +144,7 @@ C:\Users\misimsr\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\runtimes\w
 C:\Users\misimsr\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\misimsr\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\misimsr\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
+<<<<<<< HEAD
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\appsettings.json
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\GamingApp.api.staticwebassets.runtime.json
@@ -297,3 +298,5 @@ C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\j
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\gs9v5hzlzr-{0}-qlkxduta40-qlkxduta40.gz
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\tdjqbz2uyo-{0}-sae86n3l19-sae86n3l19.gz
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\ev9ls1igob-{0}-wkdv1zz360-wkdv1zz360.gz
+=======
+>>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
