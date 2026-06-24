@@ -19,11 +19,10 @@ const Footer = () => {
           <div className="footer-line"></div> {/* Line under the links */}
         </div>
 
-<<<<<<< HEAD
+
         <div className="mock-website-name">5Head Studios © 2026</div>
-=======
+
         <div className="mock-website-name">POP Gaming Platform © 2026</div>
->>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 
         {/* Right Section: Social Media Icons moved to far right */}
         <div className="footer-right">

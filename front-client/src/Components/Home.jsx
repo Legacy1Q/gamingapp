@@ -1,23 +1,13 @@
 import videoFile from "../assets/stock_video_2.mp4";
-<<<<<<< HEAD
 import thumbnail2 from "../assets/thumbnail2.png";
 import { Link } from "react-router-dom";
-=======
-import thumbnail from "../assets/thumbnail.png";
->>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 import "../styles/Home.css";
 
 const featuredGames = [
   {
-<<<<<<< HEAD
     title: "Z-Dasher",
     image: thumbnail2,
     description: "Delivery Zombie Survival Game.",
-=======
-    title: "Unity Obstacle Course",
-    image: thumbnail,
-    description: "Run, dodge, and survive your first hosted Unity game.",
->>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
   },
 ];
 
@@ -58,12 +48,7 @@ const Home = () => {
 
         <div className="featured-grid">
           {featuredGames.map((game) => (
-<<<<<<< HEAD
-
             <Link key={game.title} to="/games" className="featured-card-link"> 
-            
-=======
->>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
             <article className="featured-card" key={game.title}>
               <img src={game.image} alt={game.title} />
               <div>
@@ -71,10 +56,7 @@ const Home = () => {
                 <p>{game.description}</p>
               </div>
             </article>
-<<<<<<< HEAD
             </Link>
-=======
->>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
           ))}
         </div>
       </section>
