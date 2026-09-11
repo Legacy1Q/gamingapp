@@ -1,17 +1,23 @@
 import "../styles/GameCard.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import zDasherArtwork from "../assets/thumbnail2.png";
 
 function GameCard({ game }) {
+  const isZDasher = game.title?.toLowerCase().replace(/[^a-z0-9]/g, "") === "zdasher";
   const thumbnail =
     game.thumbnailUrl ||
     game.imageUrl ||
     game.thumbnail ||
     game.image ||
-    null;
+    (isZDasher ? zDasherArtwork : null);
 
   const handlePlay = () => {
     if (!game.playUrl) return;
-    window.open(game.playUrl, "_blank", "noopener,noreferrer");
+    const backendUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+    const playUrl = new URL(game.playUrl, backendUrl);
+    if (!["http:", "https:"].includes(playUrl.protocol)) return;
+    window.open(playUrl.href, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -29,12 +35,14 @@ function GameCard({ game }) {
           </div>
         )}
 
-        <span className="game-card-genre">{game.genre || "Game"}</span>
       </div>
 
       <div className="game-card-body">
+        <span className="game-card-genre">{game.genre || "Game"}</span>
         <div className="game-card-header">
-          <h2>{game.title}</h2>
+          <h2>{isZDasher ? (
+            <Link to="/games/z-dasher" style={{ color: "inherit" }}>{game.title}</Link>
+          ) : game.title}</h2>
           {game.developerName && <p>by {game.developerName}</p>}
         </div>
 
@@ -42,6 +50,7 @@ function GameCard({ game }) {
           {game.description || "No description available yet."}
         </p>
 
+        <div className="game-card-actions">
         <button
           type="button"
           className="game-card-play-button"
@@ -50,6 +59,8 @@ function GameCard({ game }) {
         >
           {game.playUrl ? "Play Now" : "Coming Soon"}
         </button>
+        {isZDasher && <Link className="game-card-details" to="/games/z-dasher">About the game</Link>}
+        </div>
       </div>
     </article>
   );

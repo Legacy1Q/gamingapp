@@ -4,13 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
+using GamingApp.api.Auth;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=GamingAppDb.db"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? "Data Source=GamingAppDb.db"));
+
+builder.Services.AddPlayerAccounts(builder.Environment);
 
 builder.Services.AddCors(options =>
 {
@@ -18,13 +22,17 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:5173")
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
 });
 
 var app = builder.Build();
 
 app.UseCors("AllowReactApp");
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapPlayerAccounts();
 
 app.UseDefaultFiles();
 

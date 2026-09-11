@@ -25,7 +25,7 @@ const Navbar = () => {
         <NavLink to="/games" className={getLinkClass}>Games</NavLink>
         <NavLink to="/community" className={getLinkClass}>Community</NavLink>
         <NavLink to="/about" className={getLinkClass}>About</NavLink>
-        <NavLink to="/support" className={getLinkClass}>Support</NavLink>
+        <NavLink to="/contact" className={getLinkClass}>Contact</NavLink>
       </nav>
     </header>
   );

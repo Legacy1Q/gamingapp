@@ -13,12 +13,18 @@ function GamesList() {
 
 
   return (
-    <div>
-      <h1>Game Library</h1>
+    <div className="game-library">
+      <header className="game-library-heading">
+        <p>Made by Mike Sims</p>
+        <h1>Game Library</h1>
+        <span>Explore the games I’m creating.</span>
+      </header>
+      <div className="game-library-list">
 
       {games.map((game) => (
         <GameCard key={game.id} game={game} />
       ))}
+      </div>
     </div>
   );
 }

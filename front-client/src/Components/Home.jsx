@@ -48,7 +48,7 @@ const Home = () => {
 
         <div className="featured-grid">
           {featuredGames.map((game) => (
-            <Link key={game.title} to="/games" className="featured-card-link"> 
+            <Link key={game.title} to="/games/z-dasher" className="featured-card-link"> 
             <article className="featured-card" key={game.title}>
               <img src={game.image} alt={game.title} />
               <div>

@@ -1,0 +1,36 @@
+.z-dasher {
+  background: #0b132b;
+  color: #fff;
+  min-height: 70vh;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.z-dasher-content { max-width: 1120px; margin: 0 auto; }
+.z-dasher-back { display: inline-block; color: #6fffe9; margin-bottom: 2rem; }
+.z-dasher-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: start; }
+.z-dasher-art { width: 100%; height: auto; display: block; border-radius: 20px; }
+.z-dasher-copy { min-width: 0; }
+.z-dasher-label { color: #6fffe9; font-size: 0.875rem; }
+.z-dasher h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin: 0.75rem 0 1.25rem; }
+.z-dasher-description { color: #d6e2f0; font-size: 1.25rem; margin-bottom: 1.75rem; }
+.z-dasher-play { display: inline-block; background: #6fffe9; color: #0b132b; padding: 0.9rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; }
+.z-dasher-play:hover { background: #a3fff0; }
+.z-dasher a:focus-visible { outline: 3px solid white; outline-offset: 5px; }
+.z-dasher-note { color: #b6c7db; font-size: 0.875rem; margin-top: 1rem; }
+.z-dasher-about { padding: 1.5rem 0 0; margin-top: 1.75rem; border-top: 1px solid #34445e; }
+.z-dasher h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+.z-dasher-about p { color: #d6e2f0; }
+.z-dasher-controls { line-height: 2.5; }
+.z-dasher kbd { display: inline-block; padding: 0.1rem 0.5rem; border: 1px solid #64748b; border-bottom-width: 3px; border-radius: 5px; background: #1c2541; color: #fff; font: inherit; font-weight: 700; line-height: 1.5; }
+.z-dasher-pickups { display: grid; gap: 1rem; margin-top: 1rem; }
+.z-dasher-pickups dt { font-weight: 700; }
+.z-dasher-pickups dd { margin: 0.25rem 0 0; color: #d6e2f0; }
+.z-dasher-health { color: #86efac; }
+.z-dasher-speed { color: #93c5fd; }
+
+@media (max-width: 760px) {
+  .z-dasher-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .z-dasher { padding: 1.5rem 1rem 3rem; }
+}
