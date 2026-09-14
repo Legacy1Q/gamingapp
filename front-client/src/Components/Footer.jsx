@@ -1,6 +1,3 @@
-import twitterIcon from '../assets/twitter.png';
-import instagramIcon from '../assets/instagram.png';
-import linkedInIcon from '../assets/linkedin.png';
 import { Link } from 'react-router-dom';
 import '../styles/Footer.css';
 
@@ -12,29 +9,20 @@ const Footer = () => {
         <div className="footer-links-container">
           <div className="footer-links">
             <Link to="/games">Games</Link>
-            <a href="#community">Community</a>
-            <a href="#about">About</a>
-            <a href="#support">Support</a>
+            <Link to="/community">Community</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
           </div>
           <div className="footer-line"></div> {/* Line under the links */}
         </div>
 
 
-        <div className="mock-website-name">5Head Studios © 2026</div>
+        <div className="mock-website-name">Mike Sims © {new Date().getFullYear()}</div>
 
-        <div className="mock-website-name">POP Gaming Platform © 2026</div>
-
-        {/* Right Section: Social Media Icons moved to far right */}
         <div className="footer-right">
-          <a href="#twitter">
-            <img src={twitterIcon} alt="Twitter" />
-          </a>
-          <a href="#linkedIn">
-            <img src={linkedInIcon} alt="LinkedIn" />
-          </a>
-          <a href="#instagram">
-            <img src={instagramIcon} alt="Instagram" />
-          </a>
+          <a href="mailto:mdsims2@outlook.com">Email</a>
+          <a href="https://www.linkedin.com/in/mikesimsii" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn</a>
+          <a href="https://github.com/Legacy1Q" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub</a>
         </div>
       </div>
     </div>
