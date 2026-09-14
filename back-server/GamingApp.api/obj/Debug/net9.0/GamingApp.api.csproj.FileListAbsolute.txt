@@ -301,3 +301,11 @@ C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\e
 =======
 >>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\omw509gcdj-{0}-4qadyjs42x-4qadyjs42x.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\GamingApp.api.staticwebassets.runtime.json
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\feyze48ufd-cgutc276qc.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\6n61z5pzid-asxwnrgk4t.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\lezbb194ds-y7iq0mcvb9.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\s1ft5s70al-kv9ap5i02e.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\8yixxnbtso-sae86n3l19.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\yk4ozf86dl-939w0hlka1.gz
+C:\Users\misimsr\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\h5lgdoxixf-4qadyjs42x.gz
