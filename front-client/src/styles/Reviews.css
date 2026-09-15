@@ -1,0 +1,22 @@
+.game-reviews { margin-top: 3rem; padding: 2rem 0 0; border-top: 1px solid #34445e; }
+.game-reviews a { color: #6fffe9; }
+.review-summary { font-size: 1.2rem; margin-bottom: 1.5rem; }
+.review-form { background: #141f38; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
+.review-form fieldset { border: 0; padding: 0; margin-top: 1rem; min-width: 0; }
+.review-form legend { font-weight: bold; }
+.rating-options { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0.5rem 0 1rem; }
+.rating-options label { padding: 0.5rem; border: 1px solid #64748b; border-radius: 6px; cursor: pointer; }
+.rating-options label:has(input:checked) { border-color: #6fffe9; background: #233c4c; }
+.review-form textarea { display: block; width: 100%; padding: 0.75rem; margin: 0.5rem 0; background: #0b132b; color: white; border: 1px solid #64748b; border-radius: 6px; resize: vertical; font: inherit; }
+.game-reviews button { background: #6fffe9; color: #0b132b; border: 0; border-radius: 6px; padding: 0.7rem 1rem; font: inherit; font-weight: bold; cursor: pointer; }
+.game-reviews button:disabled { opacity: 0.5; cursor: default; }
+.game-reviews :is(a, button, input, textarea):focus-visible { outline: 2px solid #6fffe9; outline-offset: 4px; }
+.review-form button { margin-top: 1rem; }
+.review-item { padding: 1.5rem 0; border-bottom: 1px solid #34445e; }
+.review-item h3, .review-body { overflow-wrap: anywhere; }
+.review-body { white-space: pre-wrap; margin-top: 0.75rem; }
+.review-rating { color: #f9ca24; }
+.review-date, #review-help { font-size: 0.875rem; color: #b6c7db; }
+.review-pages { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+.review-error { color: #fecaca; }
+.rating-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

@@ -11,8 +11,8 @@ namespace GamingApp.api.Forum;
 public static class ForumEndpoints
 {
     // Public labels don't disclose players' login email addresses or account IDs.
-    private static string Label(string id) => "Player " + Convert.ToHexString(
-        SHA256.HashData(Encoding.UTF8.GetBytes(id)))[..8];
+    private static string Label(string id, Dictionary<string, string> names) =>
+        names.GetValueOrDefault(id) ?? PlayerProfile.DefaultName(id);
 
     public static void MapForum(this WebApplication app)
     {
@@ -29,6 +29,7 @@ public static class ForumEndpoints
             return await next(context);
         });
 
+        forum.MapForumImprovements();
         forum.MapGet("/topics", async (int? page, AppDbContext db) =>
         {
             var number = Math.Clamp(page ?? 1, 1, 10000);
@@ -37,8 +38,10 @@ public static class ForumEndpoints
                 .Skip((number - 1) * 20).Take(20)
                 .Select(t => new { t.Id, t.Title, t.Category, t.AuthorId, t.CreatedAt, ReplyCount = t.Replies.Count })
                 .ToListAsync();
+            var ids = topics.Select(t => t.AuthorId).Distinct().ToArray();
+            var names = await db.PlayerProfiles.Where(p => ids.Contains(p.UserId)).ToDictionaryAsync(p => p.UserId, p => p.DisplayName);
             return Results.Ok(new { total, page = number, items = topics.Select(t => new
-                { t.Id, t.Title, t.Category, Author = Label(t.AuthorId), t.CreatedAt, t.ReplyCount }) });
+                { t.Id, t.Title, t.Category, Author = Label(t.AuthorId, names), t.CreatedAt, t.ReplyCount }) });
         });
 
         forum.MapGet("/topics/{id:int}", async (int id, int? page, HttpContext context, AppDbContext db, IConfiguration config) =>
@@ -49,11 +52,14 @@ public static class ForumEndpoints
             var replies = await db.ForumReplies.AsNoTracking().Where(r => r.ForumTopicId == id)
                 .OrderBy(r => r.Id).Skip((number - 1) * 20).Take(20).ToListAsync();
             var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Results.Ok(new { topic.Id, topic.Title, topic.Category, topic.Body, topic.CreatedAt,
-                Author = Label(topic.AuthorId),
+            var ids = replies.Select(r => r.AuthorId).Append(topic.AuthorId).Distinct().ToArray();
+            var names = await db.PlayerProfiles.Where(p => ids.Contains(p.UserId)).ToDictionaryAsync(p => p.UserId, p => p.DisplayName);
+            return Results.Ok(new { topic.Id, topic.Title, topic.Category, topic.Body, topic.CreatedAt, topic.UpdatedAt,
+                CanEdit = userId == topic.AuthorId,
+                Author = Label(topic.AuthorId, names),
                 CanDelete = userId != null && (userId == topic.AuthorId || userId == config["Owner:UserId"]),
                 total = await db.ForumReplies.CountAsync(r => r.ForumTopicId == id), page = number,
-                replies = replies.Select(r => new { r.Id, r.Body, r.CreatedAt, Author = Label(r.AuthorId) }) });
+                replies = replies.Select(r => new { r.Id, r.Body, r.CreatedAt, r.UpdatedAt, CanEdit = userId == r.AuthorId, Author = Label(r.AuthorId, names) }) });
         });
 
         forum.MapPost("/topics", async (NewTopic request, HttpContext context, AppDbContext db) =>

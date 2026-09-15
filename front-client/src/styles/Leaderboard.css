@@ -1,0 +1,20 @@
+.leaderboard-page { min-height: 70vh; padding: 3rem 1rem; background: #0b132b; color: #fff; line-height: 1.6; }
+.leaderboard-content { max-width: 1000px; margin: auto; }
+.leaderboard-page a, .leaderboard-eyebrow { color: #6fffe9; }
+.leaderboard-eyebrow { margin-top: 2rem; font-size: 0.875rem; font-weight: bold; }
+.leaderboard-page h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.2; margin: 0.75rem 0; }
+.leaderboard-note { color: #b6c7db; font-size: 0.875rem; margin: 1rem 0; }
+.leaderboard-page button { margin: 1rem 0; padding: 0.7rem 1rem; border: 0; border-radius: 8px; background: #6fffe9; color: #0b132b; font: inherit; font-weight: bold; cursor: pointer; }
+.leaderboard-page button:disabled { opacity: 0.5; cursor: default; }
+.leaderboard-best { background: #141f38; border: 1px solid #34445e; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.leaderboard-best h2 { font-size: 1.2rem; }
+.leaderboard-table-wrap { overflow-x: auto; }
+.leaderboard-page table { width: 100%; border-collapse: collapse; text-align: left; }
+.leaderboard-page caption { text-align: left; margin-bottom: 0.75rem; }
+.leaderboard-page :is(th, td) { padding: 1rem; border-bottom: 1px solid #34445e; }
+.leaderboard-page tbody th { overflow-wrap: anywhere; }
+.leaderboard-page td:nth-child(3) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.leaderboard-you { background: #19313e; }
+.leaderboard-pages { display: flex; align-items: center; gap: 1rem; }
+.leaderboard-error { color: #fecaca; }
+.leaderboard-page :is(a, button):focus-visible { outline: 2px solid #6fffe9; outline-offset: 4px; }

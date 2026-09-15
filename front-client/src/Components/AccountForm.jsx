@@ -16,7 +16,7 @@ export default function AccountForm({ register = false }) {
   const location = useLocation();
   // Only return to known local pages; never redirect to an arbitrary URL.
   const requestedReturn = location.state?.returnTo;
-  const returnTo = typeof requestedReturn === "string" && /^(\/games\/z-dasher|\/community(?:\/\d+)?)$/.test(requestedReturn) ? requestedReturn : "/games";
+  const returnTo = typeof requestedReturn === "string" && /^(\/leaderboard|\/profile|\/games\/z-dasher|\/community(?:\/\d+)?)$/.test(requestedReturn) ? requestedReturn : "/games";
 
   async function submit(event) {
     event.preventDefault();
@@ -67,6 +67,7 @@ export default function AccountForm({ register = false }) {
           </>}
           <button type="submit" disabled={busy}>{busy ? "Please wait…" : register ? "Create account" : "Log in"}</button>
         </form>
+        {!register && <p className="account-switch"><Link to="/forgot-password">Forgot password?</Link></p>}
         <p className="account-switch">{register ? "Already have an account? " : "New here? "}<Link to={register ? "/login" : "/register"} state={{ returnTo }}>{register ? "Log in" : "Create an account"}</Link></p>
       </section>
     </div>
@@ -74,3 +75,5 @@ export default function AccountForm({ register = false }) {
 }
 
 AccountForm.propTypes = { register: PropTypes.bool };
+
+

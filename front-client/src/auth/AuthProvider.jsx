@@ -38,7 +38,20 @@ export default function AuthProvider({ children }) {
     setSessionError("");
   }
 
-  return <AuthContext.Provider value={{ user, loading, sessionError, login, logout }}>{children}</AuthContext.Provider>;
+  async function saveProfile(displayName) {
+    const version = ++generation.current;
+    await submitAccountAction("profile", { displayName });
+    const account = await getCurrentUser();
+    if (!account) throw new Error("Please log in again to view your profile.");
+    if (version === generation.current) setUser(account);
+  }
+
+  function clearSession() {
+    ++generation.current;
+    setUser(null);
+    setSessionError("");
+  }
+  return <AuthContext.Provider value={{ user, loading, sessionError, login, logout, saveProfile, clearSession }}>{children}</AuthContext.Provider>;
 }
 
 AuthProvider.propTypes = { children: PropTypes.node.isRequired };

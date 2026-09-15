@@ -8,7 +8,11 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import AuthProvider from "./auth/AuthProvider";
 import AccountForm from "./Components/AccountForm";
+import PasswordRecovery from "./Components/PasswordRecovery";
 import Community from "./Components/Community";
+import ForumReports from "./Components/ForumReports";
+import Profile from "./Components/Profile";
+import Leaderboard from "./Components/Leaderboard";
 
 const App = () => {
   return (
@@ -18,12 +22,17 @@ const App = () => {
         <Navbar />
         <main>
           <Routes>
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/forgot-password" element={<PasswordRecovery key="forgot" />} />
+            <Route path="/reset-password" element={<PasswordRecovery key="reset" reset />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<AccountForm key="login" />} />
             <Route path="/register" element={<AccountForm key="register" register />} />
             <Route path="/" element={<Home />} />
             <Route path="/games" element={<GamesList />} />
             <Route path="/games/z-dasher" element={<ZDasher />} />
             <Route path="/community" element={<Community key="topics" />} />
+            <Route path="/community/reports" element={<ForumReports />} />
             <Route path="/community/:id" element={<Community key="discussion" />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

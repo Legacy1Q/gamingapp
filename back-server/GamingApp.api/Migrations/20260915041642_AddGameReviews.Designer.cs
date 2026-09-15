@@ -3,6 +3,7 @@ using System;
 using GamingApp.api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamingApp.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260915041642_AddGameReviews")]
+    partial class AddGameReviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -37,9 +40,6 @@ namespace GamingApp.api.Migrations
                     b.Property<int>("ForumTopicId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
@@ -47,56 +47,6 @@ namespace GamingApp.api.Migrations
                     b.HasIndex("ForumTopicId");
 
                     b.ToTable("ForumReplies");
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.ForumReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("BodySnapshot")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Kind")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ReporterId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Resolution")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("ResolvedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TargetId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TitleSnapshot")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TopicId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReporterId", "Kind", "TargetId")
-                        .IsUnique();
-
-                    b.ToTable("ForumReports");
                 });
 
             modelBuilder.Entity("GamingApp.api.Models.ForumTopic", b =>
@@ -122,9 +72,6 @@ namespace GamingApp.api.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -213,51 +160,6 @@ namespace GamingApp.api.Migrations
                         {
                             t.HasCheckConstraint("CK_GameReview_Rating", "Rating BETWEEN 1 AND 5");
                         });
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardBest", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CompletedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ElapsedMilliseconds")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("ElapsedMilliseconds");
-
-                    b.ToTable("LeaderboardBests");
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardRun", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Deliveries")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("ElapsedMilliseconds")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("RunId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("LeaderboardRuns");
                 });
 
             modelBuilder.Entity("GamingApp.api.Models.PlayerProfile", b =>
@@ -490,15 +392,6 @@ namespace GamingApp.api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GamingApp.api.Models.ForumReport", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("ReporterId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("GamingApp.api.Models.ForumTopic", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
@@ -519,24 +412,6 @@ namespace GamingApp.api.Migrations
                     b.HasOne("GamingApp.api.Models.Game", null)
                         .WithMany()
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardBest", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardRun", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { forumRequest } from "../forum/api";
 import "../styles/Community.css";
+import PostActions from "./PostActions";
 
 export default function Community() {
   const { id } = useParams();
@@ -62,6 +63,7 @@ export default function Community() {
   return <div className="community-page"><div className="community-content">
     {id && <Link to="/community">← All discussions</Link>}
     <h1>{id ? "Discussion" : "Community"}</h1>
+    {user?.isOwner && <Link to="/community/reports">Review reported posts</Link>}
     {!id && <p>Share feedback, suggest ideas, and raise concerns about the games you play.</p>}
     {loading ? <p role="status">Loading discussions…</p> : loadError ? <div role="alert"><p>{loadError}</p><button onClick={() => setRevision(value => value + 1)}>Try again</button></div> : data && <>
       {id ? <>
@@ -70,6 +72,8 @@ export default function Community() {
           <h2>{data.title}</h2>
           <p className="forum-meta">{data.author} · {new Date(data.createdAt).toLocaleString()}</p>
           <p className="forum-body">{data.body}</p>
+          {data.updatedAt && <p className="forum-meta">Edited {new Date(data.updatedAt).toLocaleString()}</p>}
+          <PostActions post={data} kind="topic" onChanged={() => setRevision(value => value + 1)} />
           {data.canDelete && <div className="forum-delete">
             {confirmDelete ? <><p>Delete this topic and all its replies?</p><button disabled={busy} onClick={deleteTopic}>Delete topic</button> <button disabled={busy} onClick={() => setConfirmDelete(false)}>Cancel</button></>
               : <button onClick={() => setConfirmDelete(true)}>Delete topic</button>}
@@ -80,6 +84,8 @@ export default function Community() {
         {data.replies.map(reply => <article className="forum-post" key={reply.id}>
           <p className="forum-meta">{reply.author} · {new Date(reply.createdAt).toLocaleString()}</p>
           <p className="forum-body">{reply.body}</p>
+          {reply.updatedAt && <p className="forum-meta">Edited {new Date(reply.updatedAt).toLocaleString()}</p>}
+          <PostActions post={reply} kind="reply" onChanged={() => setRevision(value => value + 1)} />
         </article>)}
       </> : <div className="forum-topics">
         {data.items.length === 0 && <p>No discussions yet. Be the first to share your thoughts.</p>}

@@ -3,6 +3,7 @@ using System;
 using GamingApp.api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamingApp.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260915042351_AddForumEditsAndReports")]
+    partial class AddForumEditsAndReports
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -213,51 +216,6 @@ namespace GamingApp.api.Migrations
                         {
                             t.HasCheckConstraint("CK_GameReview_Rating", "Rating BETWEEN 1 AND 5");
                         });
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardBest", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CompletedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ElapsedMilliseconds")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("ElapsedMilliseconds");
-
-                    b.ToTable("LeaderboardBests");
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardRun", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Deliveries")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("ElapsedMilliseconds")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("RunId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("LeaderboardRuns");
                 });
 
             modelBuilder.Entity("GamingApp.api.Models.PlayerProfile", b =>
@@ -519,24 +477,6 @@ namespace GamingApp.api.Migrations
                     b.HasOne("GamingApp.api.Models.Game", null)
                         .WithMany()
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardBest", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GamingApp.api.Models.LeaderboardRun", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

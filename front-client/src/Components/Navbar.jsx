@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <div className="navbar-account">
           {loading ? <span role="status">Checking session…</span> : user ? <>
-            <span>Signed in as {user.email}</span>
+            <Link to="/profile" style={{ color: "#6fffe9", overflowWrap: "anywhere" }}>{user.displayName || "Your profile"}</Link>
             <button type="button" className="login" onClick={handleLogout} disabled={loggingOut}>{loggingOut ? "Logging out…" : "Logout"}</button>
           </> : <Link to="/login" className="login">Login</Link>}
           {(error || sessionError) && <p className="account-error" role="alert">{error || sessionError}</p>}
@@ -41,6 +41,7 @@ const Navbar = () => {
 
       <nav className="nav-links" aria-label="Main navigation">
         <NavLink to="/games" className={getLinkClass}>Games</NavLink>
+        <NavLink to="/leaderboard" className={getLinkClass}>Leaderboard</NavLink>
         <NavLink to="/community" className={getLinkClass}>Community</NavLink>
         <NavLink to="/about" className={getLinkClass}>About</NavLink>
         <NavLink to="/contact" className={getLinkClass}>Contact</NavLink>

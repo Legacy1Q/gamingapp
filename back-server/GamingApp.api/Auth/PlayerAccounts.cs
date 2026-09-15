@@ -2,6 +2,10 @@ using System.ComponentModel.DataAnnotations;
 using GamingApp.api.Data;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Identity;
+using GamingApp.api.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
+using System.Text.RegularExpressions;
 
 namespace GamingApp.api.Auth;
 
@@ -17,7 +21,10 @@ public static class PlayerAccounts
             options.Password.RequiredLength = 10;
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-        }).AddEntityFrameworkStores<AppDbContext>().AddSignInManager();
+        }).AddEntityFrameworkStores<AppDbContext>().AddSignInManager().AddDefaultTokenProviders();
+        services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromHours(1));
+        // Check changed security stamps on every request so reset passwords revoke old cookies.
+        services.Configure<SecurityStampValidatorOptions>(options => options.ValidationInterval = TimeSpan.Zero);
 
         services.ConfigureApplicationCookie(options =>
         {
@@ -65,6 +72,7 @@ public static class PlayerAccounts
 
         auth.MapGet("/csrf", (HttpContext context, IAntiforgery antiforgery) =>
             Results.Ok(new { token = antiforgery.GetAndStoreTokens(context).RequestToken }));
+        auth.MapPasswordRecovery();
 
         auth.MapPost("/register", async (Credentials request, UserManager<IdentityUser> users) =>
         {
@@ -89,10 +97,35 @@ public static class PlayerAccounts
             return result.Succeeded ? Results.NoContent() : Results.Unauthorized();
         });
 
-        auth.MapGet("/me", async (HttpContext context, UserManager<IdentityUser> users) =>
+        auth.MapGet("/me", async (HttpContext context, UserManager<IdentityUser> users, AppDbContext db, IConfiguration config) =>
         {
             var user = await users.GetUserAsync(context.User);
-            return user is null ? Results.Unauthorized() : Results.Ok(new { user.Id, user.Email });
+            if (user is null) return Results.Unauthorized();
+            var profile = await db.PlayerProfiles.FindAsync(user.Id);
+            return Results.Ok(new { user.Id, user.Email,
+                DisplayName = profile?.DisplayName ?? PlayerProfile.DefaultName(user.Id),
+                HasDisplayName = profile != null, IsOwner = user.Id == config["Owner:UserId"] });
+        }).RequireAuthorization();
+
+        auth.MapPost("/profile", async (ProfileRequest request, HttpContext context, UserManager<IdentityUser> users, AppDbContext db) =>
+        {
+            var user = await users.GetUserAsync(context.User);
+            if (user is null) return Results.Unauthorized();
+            var name = request.DisplayName?.Trim();
+            if (name is null || !Regex.IsMatch(name, @"\A[A-Za-z0-9 _-]{3,30}\z")
+                || Regex.IsMatch(name, @"\APlayer [A-Fa-f0-9]{8}\z", RegexOptions.IgnoreCase))
+                return Results.BadRequest(new { message = "Use 3–30 letters (A–Z), numbers, spaces, underscores or hyphens. Automatic Player labels are reserved." });
+            var normalized = name.ToUpperInvariant();
+            if (await db.PlayerProfiles.AnyAsync(p => p.NormalizedName == normalized && p.UserId != user.Id))
+                return Results.Conflict(new { message = "That display name is already taken." });
+            var profile = await db.PlayerProfiles.FindAsync(user.Id);
+            if (profile is null) { profile = new PlayerProfile { UserId = user.Id }; db.PlayerProfiles.Add(profile); }
+            profile.DisplayName = name;
+            profile.NormalizedName = normalized;
+            try { await db.SaveChangesAsync(); }
+            catch (DbUpdateException error) when (error.InnerException is SqliteException { SqliteErrorCode: 19 })
+            { return Results.Conflict(new { message = "That display name is already taken. Please try again." }); }
+            return Results.NoContent();
         }).RequireAuthorization();
 
         auth.MapPost("/logout", async (SignInManager<IdentityUser> signIn) =>
@@ -103,4 +136,5 @@ public static class PlayerAccounts
     }
 
     public record Credentials(string? Email, string? Password);
+    public record ProfileRequest(string? DisplayName);
 }

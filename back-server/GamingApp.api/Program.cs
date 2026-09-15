@@ -8,6 +8,8 @@ using GamingApp.api.Auth;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Antiforgery;
 using GamingApp.api.Forum;
+using GamingApp.api.Reviews;
+using GamingApp.api.Leaderboards;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ?? "Data Source=GamingAppDb.db"));
 
 builder.Services.AddPlayerAccounts(builder.Environment);
+builder.Services.AddPasswordRecovery();
 builder.Services.AddAuthorization(options => options.AddPolicy("Owner", policy =>
     policy.RequireAuthenticatedUser().RequireAssertion(context =>
     {
@@ -42,9 +45,12 @@ var app = builder.Build();
 app.UseCors("AllowReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 app.UseAntiforgery();
 app.MapPlayerAccounts();
 app.MapForum();
+app.MapReviews();
+app.MapLeaderboards();
 
 // All game mutations share the owner policy and explicit JSON CSRF validation.
 var management = app.MapGroup("/games").RequireAuthorization("Owner");

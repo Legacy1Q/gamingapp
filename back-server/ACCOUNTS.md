@@ -77,7 +77,8 @@ Game mutations also require the `X-CSRF-TOKEN` header from `/auth/csrf` and logi
 cookies. Upload uses multipart form data with a `file` field. No owner management
 page has been added; these restrictions protect the existing backend endpoints.
 
-Email confirmation, password recovery, and production deployment configuration
-are not included in this first local-development step. Production cookies require
+Password recovery is now implemented; see `RECOVERY.md` for local mail preview
+and SMTP setup. Email confirmation and production deployment configuration
+are not included. Production cookies require
 HTTPS. The configurable `ConnectionStrings:DefaultConnection` overrides the
 default `GamingAppDb.db` location when needed.

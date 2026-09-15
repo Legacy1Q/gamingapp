@@ -15,7 +15,7 @@ async function request(path, options = {}) {
   if (response.status === 401 && path === "me") return null;
   if (response.status === 401 && path === "logout") return null;
   const body = await response.json().catch(() => null);
-  const message = response.status === 401
+  const message = response.status === 429 ? "Too many requests. Please wait 15 minutes before trying again." : response.status === 401
     ? "Unable to log in. Check your email and password. After repeated attempts, wait 15 minutes before trying again."
     : body?.message || (Array.isArray(body?.errors) ? body.errors.join(" ") : null)
       || "The request could not be completed. Please try again.";
