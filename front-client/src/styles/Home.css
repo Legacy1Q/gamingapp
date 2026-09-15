@@ -177,6 +177,38 @@
   color: #ffffff;
 }
 
+.forum-topic-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.forum-topic-link strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.forum-topic-category {
+  color: #6fffe9;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.forum-topic-meta {
+  color: #9eb7c8;
+  font-size: 0.88rem;
+}
+
+.forum-list-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 @media (max-width: 800px) {
   .games-section,
   .forum-section {
