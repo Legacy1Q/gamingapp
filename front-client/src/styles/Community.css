@@ -1,0 +1,18 @@
+.community-page { min-height: 70vh; padding: 3rem 1rem; background: #0b132b; color: white; line-height: 1.6; }
+.community-content { max-width: 900px; margin: auto; }
+.community-page h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin: 0.75rem 0; }
+.community-page h2 { font-size: 1.4rem; margin: 0.5rem 0; overflow-wrap: anywhere; }
+.community-page a { color: #6fffe9; text-underline-offset: 4px; }
+.forum-post, .forum-compose { padding: 1.5rem; margin: 1.5rem 0; background: #141f38; border: 1px solid #34445e; border-radius: 12px; }
+.forum-category { color: #6fffe9; font-size: 0.875rem; font-weight: bold; }
+.community-page .forum-meta { font-size: 0.875rem; color: #b6c7db; }
+.forum-body { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 1rem; }
+.forum-compose { display: flex; flex-direction: column; gap: 0.75rem; }
+.forum-compose :is(input, select, textarea) { width: 100%; background: #0b132b; color: white; border: 1px solid #64748b; border-radius: 6px; padding: 0.75rem; font: inherit; }
+.forum-compose textarea { resize: vertical; }
+.community-page button { padding: 0.65rem 1rem; background: #6fffe9; color: #0b132b; border: 0; border-radius: 6px; font: inherit; font-weight: bold; cursor: pointer; }
+.community-page button:disabled { opacity: 0.5; cursor: default; }
+.community-page :is(button, a, input, select, textarea):focus-visible { outline: 2px solid #6fffe9; outline-offset: 4px; }
+.forum-pagination { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.forum-error { color: #fecaca; }
+.forum-delete { margin-top: 1rem; }

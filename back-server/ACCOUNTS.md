@@ -55,10 +55,27 @@ and migrates the real DB only after checks pass. Artifacts live in ignored `.loc
 
 ## Next steps
 
-React registration/login forms and navbar login status are not connected yet.
-Game files and existing game-management endpoints retain their previous access
-behavior. Restricting gameplay and owner-only game management is a separate step;
-simply hiding frontend buttons does not protect those server routes.
+React registration/login forms and navbar login status are connected. Play links
+send signed-out visitors to Login, preserving the game detail page through
+registration and login. The library remains public.
+
+In `Program.cs`, middleware before static file serving checks authentication for
+paths below `/games/` and for `/play`. This also covers individual game API paths;
+the public library endpoint is `/games`. Protected responses use `Cache-Control:
+no-store`. Numeric API route constraints avoid collisions with Unity directories.
+Logging out blocks subsequent downloads; it cannot stop a game already loaded
+in another tab or revoke files downloaded previously.
+
+Game create/update/delete/upload endpoints now share the `Owner` authorization
+policy. It compares the authenticated account ID to server configuration
+`Owner:UserId`; new registrations cannot choose or claim this permission.
+The development setting identifies Mike's existing account. In other environments,
+set `Owner__UserId` to the intended account ID. When unset, all game mutations are
+denied. Never use a public email match or a "first signup wins" rule to grant ownership.
+
+Game mutations also require the `X-CSRF-TOKEN` header from `/auth/csrf` and login
+cookies. Upload uses multipart form data with a `file` field. No owner management
+page has been added; these restrictions protect the existing backend endpoints.
 
 Email confirmation, password recovery, and production deployment configuration
 are not included in this first local-development step. Production cookies require

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.StaticFiles;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 using GamingApp.api.Auth;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Antiforgery;
+using GamingApp.api.Forum;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +18,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ?? "Data Source=GamingAppDb.db"));
 
 builder.Services.AddPlayerAccounts(builder.Environment);
+builder.Services.AddAuthorization(options => options.AddPolicy("Owner", policy =>
+    policy.RequireAuthenticatedUser().RequireAssertion(context =>
+    {
+        var ownerId = builder.Configuration["Owner:UserId"];
+        return !string.IsNullOrWhiteSpace(ownerId)
+            && context.User.FindFirstValue(ClaimTypes.NameIdentifier) == ownerId;
+    })));
 
 builder.Services.AddCors(options =>
 {
@@ -32,9 +42,40 @@ var app = builder.Build();
 app.UseCors("AllowReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseAntiforgery();
 app.MapPlayerAccounts();
+app.MapForum();
+
+// All game mutations share the owner policy and explicit JSON CSRF validation.
+var management = app.MapGroup("/games").RequireAuthorization("Owner");
+management.AddEndpointFilter(async (context, next) =>
+{
+    var antiforgery = context.HttpContext.RequestServices.GetRequiredService<IAntiforgery>();
+    if (!await antiforgery.IsRequestValidAsync(context.HttpContext))
+        return Results.BadRequest(new { message = "Invalid request token. Refresh and try again." });
+    return await next(context);
+});
 
 app.UseDefaultFiles();
+
+// Check the cookie BEFORE static files can send a Unity build to the browser.
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path;
+    var gameFiles = (path.StartsWithSegments("/games", out var remaining) && remaining.HasValue)
+        || path.StartsWithSegments("/play");
+    if (gameFiles)
+    {
+        context.Response.Headers.CacheControl = "no-store";
+        if (context.User.Identity?.IsAuthenticated != true)
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsJsonAsync(new { message = "Log in to play this game." });
+            return;
+        }
+    }
+    await next();
+});
 
 var provider = new FileExtensionContentTypeProvider();
 
@@ -60,7 +101,7 @@ app.MapGet("/games", async (AppDbContext db) =>
 });
 
 
-app.MapGet("/games/{id}", async (int id, AppDbContext db) =>
+app.MapGet("/games/{id:int}", async (int id, AppDbContext db) =>
 {
     var game = await db.Games.FindAsync(id);
 
@@ -70,7 +111,7 @@ app.MapGet("/games/{id}", async (int id, AppDbContext db) =>
 });
 
 
-app.MapPost("/games", async (CreateGameRequest request, AppDbContext db) =>
+management.MapPost("", async (CreateGameRequest request, AppDbContext db) =>
 {
     var newGame = new Game
     {
@@ -91,7 +132,7 @@ app.MapPost("/games", async (CreateGameRequest request, AppDbContext db) =>
 });
 
 
-app.MapPost("/games/{id}/upload", async (int id, IFormFile file, AppDbContext db, IWebHostEnvironment env) =>
+management.MapPost("/{id:int}/upload", async (int id, IFormFile file, AppDbContext db, IWebHostEnvironment env) =>
 {
     var game = await db.Games.FindAsync(id);
 
@@ -152,7 +193,7 @@ app.MapPost("/games/{id}/upload", async (int id, IFormFile file, AppDbContext db
     });
 });
 
-app.MapPut("/games/{id}", async (int id, UpdateGameRequest request, AppDbContext db) =>
+management.MapPut("/{id:int}", async (int id, UpdateGameRequest request, AppDbContext db) =>
 {
     var game = await db.Games.FindAsync(id);
 
@@ -171,7 +212,7 @@ app.MapPut("/games/{id}", async (int id, UpdateGameRequest request, AppDbContext
 });
 
 
-app.MapDelete("/games/{id}", async (int id, AppDbContext db) =>
+management.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
 {
     var game = await db.Games.FindAsync(id);
 
@@ -187,3 +228,4 @@ app.MapDelete("/games/{id}", async (int id, AppDbContext db) =>
 });
 
 app.Run();
+

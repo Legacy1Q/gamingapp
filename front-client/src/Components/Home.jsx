@@ -71,6 +71,7 @@ const Home = () => {
         <div className="list-container">
           <p className="eyebrow">Community</p>
           <h2>Forum Topics</h2>
+          <Link to="/community" className="hero-button">Join the discussion</Link>
           <ul className="forum-list">
             {forumTopics.map((topic) => (
               <li key={topic} className="forum-list-items">{topic}</li>

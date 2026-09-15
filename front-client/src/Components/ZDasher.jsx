@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import thumbnail from "../assets/thumbnail2.png";
 import "../styles/ZDasher.css";
+import PlayLink from "./PlayLink";
 
 // .NET serves everything inside wwwroot at the server's root URL.
 // Override this address with VITE_API_BASE_URL when hosting the app elsewhere.
@@ -18,9 +19,9 @@ export default function ZDasher() {
             <p className="z-dasher-label">Zombie survival · Browser game</p>
             <h1>Z-Dasher</h1>
             <p className="z-dasher-description">A delivery zombie survival game.</p>
-            <a className="z-dasher-play" href={playUrl} target="_blank" rel="noopener noreferrer">
+            <PlayLink className="z-dasher-play" playUrl={playUrl}>
               Play Z-Dasher
-            </a>
+            </PlayLink>
             <p className="z-dasher-note">Opens in a new tab. The first load may take a moment while the game downloads.</p>
             <section className="z-dasher-about" aria-labelledby="z-dasher-about-title">
               <h2 id="z-dasher-about-title">About the game</h2>

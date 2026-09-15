@@ -4,6 +4,7 @@
 .game-library-heading h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.15; margin: 0.5rem 0 1rem; }
 .game-library-heading span { color: #b6c7db; }
 .game-library-list { display: grid; gap: 2rem; }
+.game-card-play-button { text-decoration: none; display: inline-block; }
 .game-library .game-card { display: grid; grid-template-columns: 1.15fr 1fr; background: #141f38; border: 1px solid #34445e; border-radius: 16px; overflow: hidden; }
 .game-library .game-card-image-wrap { background: #080e20; min-width: 0; display: grid; }
 .game-library .game-card-image { width: 100%; height: 100%; max-height: 460px; object-fit: contain; display: block; }

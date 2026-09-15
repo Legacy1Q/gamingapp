@@ -2,8 +2,20 @@ import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Navbar.css";
+import { useState } from "react";
+import { useAuth } from "../auth/AuthContext";
 
 const Navbar = () => {
+  const { user, loading, sessionError, logout } = useAuth();
+  const [loggingOut, setLoggingOut] = useState(false);
+  const [error, setError] = useState("");
+  async function handleLogout() {
+    setLoggingOut(true);
+    setError("");
+    try { await logout(); }
+    catch (failure) { setError(failure.message); }
+    finally { setLoggingOut(false); }
+  }
   const getLinkClass = ({ isActive }) => (isActive ? "active-link" : undefined);
 
   return (
@@ -18,7 +30,13 @@ const Navbar = () => {
           </button>
         </form>
 
-        <Link to="/login" className="login">Login</Link>
+        <div className="navbar-account">
+          {loading ? <span role="status">Checking session…</span> : user ? <>
+            <span>Signed in as {user.email}</span>
+            <button type="button" className="login" onClick={handleLogout} disabled={loggingOut}>{loggingOut ? "Logging out…" : "Logout"}</button>
+          </> : <Link to="/login" className="login">Login</Link>}
+          {(error || sessionError) && <p className="account-error" role="alert">{error || sessionError}</p>}
+        </div>
       </div>
 
       <nav className="nav-links" aria-label="Main navigation">

@@ -1,0 +1,21 @@
+.account-page { min-height: 70vh; padding: 3rem 1rem; background: #0b132b; color: #fff; line-height: 1.6; }
+.account-panel { max-width: 480px; margin: auto; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid #34445e; border-radius: 16px; background: #141f38; }
+.account-panel h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 1rem; }
+.account-panel p { color: #d6e2f0; }
+.account-panel form { display: flex; flex-direction: column; margin-top: 1.5rem; }
+.account-panel label { margin: 1rem 0 0.4rem; font-weight: 700; }
+.account-panel input { width: 100%; min-width: 0; padding: 0.8rem; border: 1px solid #64748b; border-radius: 6px; background: #0b132b; color: white; font: inherit; }
+.account-panel button { padding: 0.85rem; margin-top: 1.5rem; background: #6fffe9; color: #0b132b; border: 0; border-radius: 8px; font: inherit; font-weight: 700; cursor: pointer; }
+.account-panel button:disabled { opacity: 0.65; cursor: wait; }
+.account-panel .account-help { margin-top: 0.5rem; font-size: 0.875rem; }
+.account-panel .account-error { color: #fecaca; margin-top: 1rem; }
+.account-panel .account-success { color: #86efac; margin-top: 1rem; }
+.account-switch { margin-top: 1.5rem; }
+.account-panel a { color: #6fffe9; text-underline-offset: 4px; }
+.account-panel :is(input, button, a):focus-visible { outline: 2px solid #6fffe9; outline-offset: 4px; }
+.navbar-account { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.5rem 1rem; max-width: 320px; }
+.navbar-account span { overflow-wrap: anywhere; min-width: 0; font-size: 0.875rem; }
+.navbar-account button { border: 0; font: inherit; cursor: pointer; }
+.navbar-account button:disabled { opacity: 0.65; cursor: wait; }
+.navbar-account .account-error { color: #fecaca; font-size: 0.875rem; }
+.navbar-account :is(a, button):focus-visible { outline: 2px solid #6fffe9; outline-offset: 4px; }

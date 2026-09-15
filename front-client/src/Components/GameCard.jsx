@@ -2,6 +2,7 @@ import "../styles/GameCard.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import zDasherArtwork from "../assets/thumbnail2.png";
+import PlayLink from "./PlayLink";
 
 function GameCard({ game }) {
   const isZDasher = game.title?.toLowerCase().replace(/[^a-z0-9]/g, "") === "zdasher";
@@ -11,14 +12,6 @@ function GameCard({ game }) {
     game.thumbnail ||
     game.image ||
     (isZDasher ? zDasherArtwork : null);
-
-  const handlePlay = () => {
-    if (!game.playUrl) return;
-    const backendUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
-    const playUrl = new URL(game.playUrl, backendUrl);
-    if (!["http:", "https:"].includes(playUrl.protocol)) return;
-    window.open(playUrl.href, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <article className="game-card">
@@ -51,14 +44,12 @@ function GameCard({ game }) {
         </p>
 
         <div className="game-card-actions">
-        <button
-          type="button"
+        <PlayLink
           className="game-card-play-button"
-          onClick={handlePlay}
-          disabled={!game.playUrl}
+          playUrl={game.playUrl}
         >
           {game.playUrl ? "Play Now" : "Coming Soon"}
-        </button>
+        </PlayLink>
         {isZDasher && <Link className="game-card-details" to="/games/z-dasher">About the game</Link>}
         </div>
       </div>
