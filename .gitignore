@@ -2,3 +2,6 @@
 .local/
 **/bin/
 **/obj/
+/back-server/GamingApp.api/GamingAppDb.db
+/back-server/GamingApp.api/GamingAppDb.db-shm
+/back-server/GamingApp.api/GamingAppDb.db-wal

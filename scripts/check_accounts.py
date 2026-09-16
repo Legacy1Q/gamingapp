@@ -94,10 +94,11 @@ try:
         with response:
             return response.status, response.headers
 
-    game_paths = ["/games/z-dasher/index.html", "/games/z-dasher/",
-                  "/games/z-dasher/Build/Downloads.loader.js",
-                  "/games/z-dasher/Build/Downloads.data",
-                  "/games/z-dasher/Build/Downloads.wasm"]
+    game_paths = ["/games/z-dasher/index.html", "/games/z-dasher/"]
+    for extension in ("*.loader.js", "*.framework.js", "*.data", "*.wasm"):
+        matches = list((project / "wwwroot/games/z-dasher/Build").glob(extension))
+        assert len(matches) == 1, extension
+        game_paths.append("/games/z-dasher/Build/" + matches[0].name)
     assert request("/games")[0] == 200
     assert request("/leaderboards/z-dasher")[0] == 401
     assert request("/leaderboards/z-dasher/start", "POST", {"totalDeliveries": 5})[0] == 401

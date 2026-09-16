@@ -209,8 +209,37 @@
   gap: 0.75rem;
 }
 
+.home-leaderboard-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home-leaderboard-card {
+  min-width: 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(111, 255, 233, 0.18);
+  border-radius: 24px;
+  background: #1c2541;
+  color: #d8f7ff;
+}
+
+.home-leaderboard-card a { color: #6fffe9; }
+.home-leaderboard-card table { width: 100%; border-collapse: collapse; }
+.home-leaderboard-card th,
+.home-leaderboard-card td { padding: 1rem 0.75rem; text-align: left; }
+.home-leaderboard-card thead { color: #9eb7c8; }
+.home-leaderboard-card tbody tr { border-top: 1px solid rgba(111, 255, 233, 0.12); }
+.home-leaderboard-card tbody td { color: #6fffe9; font-weight: 800; width: 5rem; }
+.home-leaderboard-card tbody th { overflow-wrap: anywhere; }
+
 @media (max-width: 800px) {
   .games-section,
+  .home-leaderboard-section,
   .forum-section {
     grid-template-columns: 1fr;
   }
