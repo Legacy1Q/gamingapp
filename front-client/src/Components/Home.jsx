@@ -3,6 +3,7 @@ import videoFile from "../assets/stock_video_2.mp4";
 import thumbnail2 from "../assets/thumbnail2.png";
 import { Link } from "react-router-dom";
 import { forumRequest } from "../forum/api";
+import { useAuth } from "../auth/AuthContext";
 import "../styles/Home.css";
 
 const featuredGames = [
@@ -14,9 +15,37 @@ const featuredGames = [
 ];
 
 const Home = () => {
+  const { user, loading: sessionLoading } = useAuth();
+  const [rankings, setRankings] = useState([]);
+  const [rankingsLoading, setRankingsLoading] = useState(true);
+  const [rankingsError, setRankingsError] = useState("");
   const [forumTopics, setForumTopics] = useState([]);
   const [topicsLoading, setTopicsLoading] = useState(true);
   const [topicsError, setTopicsError] = useState("");
+
+  useEffect(() => {
+    if (!user) return;
+    let active = true;
+    setRankingsLoading(true);
+    setRankingsError("");
+    async function loadRankings() {
+      const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+      const response = await fetch(new URL("/leaderboards/z-dasher?page=1", base), {
+        credentials: "include", cache: "no-store",
+      });
+      if (!response.ok) throw new Error(response.status === 401
+        ? "Please log in again to view player rankings."
+        : "Unable to load rankings. Try the full leaderboard.");
+      const data = await response.json();
+      if (active) setRankings(data.items.slice(0, 5));
+    }
+    loadRankings().catch(() => {
+      if (active) setRankingsError("Unable to load rankings. Try the full leaderboard.");
+    }).finally(() => {
+      if (active) setRankingsLoading(false);
+    });
+    return () => { active = false; };
+  }, [user]);
 
   useEffect(() => {
     let active = true;
@@ -115,6 +144,27 @@ const Home = () => {
               ))
             )}
           </ul>
+        </div>
+      </section>
+      <section className="home-leaderboard-section" aria-labelledby="home-leaderboard-title">
+        <div className="section-copy">
+          <p className="eyebrow">Z-Dasher · Top players</p>
+          <h2 id="home-leaderboard-title">Leaderboard</h2>
+          <p>Five deliveries. One life. Race for the top spot.</p>
+          <Link to="/leaderboard" className="hero-button">View full leaderboard</Link>
+        </div>
+        <div className="home-leaderboard-card">
+          {sessionLoading ? <p role="status">Checking session…</p>
+            : !user ? <p><Link to="/login" state={{ returnTo: "/" }}>Log in</Link> to see player rankings.</p>
+            : rankingsLoading ? <p role="status">Loading rankings…</p>
+            : rankingsError ? <p role="alert">{rankingsError}</p>
+            : rankings.length === 0 ? <p>No qualifying finishes yet. Be the first to claim a rank!</p>
+            : <table aria-label="Top five Z-Dasher players">
+              <thead><tr><th scope="col">Rank</th><th scope="col">Name</th></tr></thead>
+              <tbody>{rankings.map((player, index) => <tr key={index}>
+                <td>#{player.rank}</td><th scope="row">{player.name}</th>
+              </tr>)}</tbody>
+            </table>}
         </div>
       </section>
     </div>
