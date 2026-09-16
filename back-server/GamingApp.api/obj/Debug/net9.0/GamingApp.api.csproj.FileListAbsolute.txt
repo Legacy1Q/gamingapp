@@ -292,13 +292,12 @@ C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\refint\Gamin
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\GamingApp.api.pdb
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\GamingApp.api.genruntimeconfig.cache
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\ref\GamingApp.api.dll
-C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\gcidm8648r-{0}-pyinugp2dy-pyinugp2dy.gz
-C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\sot2ty4x3m-{0}-asxwnrgk4t-asxwnrgk4t.gz
-C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\j08nj5952a-{0}-y7iq0mcvb9-y7iq0mcvb9.gz
-C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\gs9v5hzlzr-{0}-qlkxduta40-qlkxduta40.gz
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\tdjqbz2uyo-{0}-sae86n3l19-sae86n3l19.gz
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\ev9ls1igob-{0}-wkdv1zz360-wkdv1zz360.gz
 =======
 >>>>>>> 2ce1f479654d3d0c709476dcf80cf8cbc72405ee
-C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\omw509gcdj-{0}-4qadyjs42x-4qadyjs42x.gz
 C:\Users\mdsim\gamingapp\back-server\GamingApp.api\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\4b1emk1ecp-{0}-vfcjgjo8cq-vfcjgjo8cq.gz
+C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\qoku8qqgzc-{0}-egpe3nzinp-egpe3nzinp.gz
+C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\pdaznprkqu-{0}-0hjt1tsrcb-0hjt1tsrcb.gz
+C:\Users\mdsim\gamingapp\back-server\GamingApp.api\obj\Debug\net9.0\compressed\gs9v5hzlzr-{0}-shihiiiu2o-shihiiiu2o.gz
