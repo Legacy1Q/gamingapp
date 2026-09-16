@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import GameSearch from "./GameSearch";
 import "../styles/Navbar.css";
 import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
@@ -23,12 +22,7 @@ const Navbar = () => {
       <div className="top-row">
         <Link to="/" className="logo">GameHub</Link>
 
-        <form className="search-bar" onSubmit={(event) => event.preventDefault()}>
-          <input type="text" placeholder="Search games..." aria-label="Search games" />
-          <button type="submit" className="search-button" aria-label="Search">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
+        <GameSearch />
 
         <div className="navbar-account">
           {loading ? <span role="status">Checking session…</span> : user ? <>
