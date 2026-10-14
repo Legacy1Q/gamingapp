@@ -76,7 +76,7 @@ const Home = () => {
 
         <div className="hero-content">
           <p className="eyebrow">Indie Games • Community • Updates</p>
-          <h1>Welcome to GameHub</h1>
+          <h1>GamesHQ</h1>
           <p className="hero-subtitle">
             A home for the games you create, launch, and share with players.
           </p>
