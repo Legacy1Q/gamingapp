@@ -1,5 +1,10 @@
 .tools/
 .local/
+.env
+.env.*
+!.env.example
+**/node_modules/
+**/dist/
 **/bin/
 **/obj/
 /back-server/GamingApp.api/GamingAppDb.db

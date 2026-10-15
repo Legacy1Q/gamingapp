@@ -1,3 +1,4 @@
+import { apiBaseUrl } from "../config.js";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
@@ -19,7 +20,7 @@ export default function Leaderboard() {
     let active = true;
     setLoading(true); setError("");
     async function load() {
-      const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+      const base = apiBaseUrl;
       const response = await fetch(new URL(`/leaderboards/z-dasher?page=${page}`, base), { credentials: "include", cache: "no-store" });
       if (!response.ok) throw new Error(response.status === 401 ? "Please log in again to view the leaderboard." : "Unable to load the leaderboard. Please try again.");
       const result = await response.json();

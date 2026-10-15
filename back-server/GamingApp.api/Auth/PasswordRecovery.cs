@@ -28,6 +28,8 @@ public static class PasswordRecovery
         auth.MapPost("/forgot-password", async (ForgotRequest request, UserManager<IdentityUser> users,
             RecoveryMailQueue queue, IConfiguration config, IHostEnvironment environment) =>
         {
+            if (config.GetValue<bool>("Preview:Ephemeral"))
+                return Results.Json(new { message = "Password recovery is unavailable on this temporary test deployment. Use a disposable test account." }, statusCode: 503);
             var email = request.Email?.Trim();
             if (!string.IsNullOrEmpty(email) && email.Length <= 256 && new EmailAddressAttribute().IsValid(email))
             {

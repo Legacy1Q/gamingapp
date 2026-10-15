@@ -1,3 +1,4 @@
+import { apiBaseUrl } from "../config.js";
 import { Link } from "react-router-dom";
 import thumbnail from "../assets/thumbnail2.png";
 import "../styles/ZDasher.css";
@@ -6,7 +7,7 @@ import GameReviews from "./GameReviews";
 
 // .NET serves everything inside wwwroot at the server's root URL.
 // Override this address with VITE_API_BASE_URL when hosting the app elsewhere.
-const backendUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+const backendUrl = apiBaseUrl;
 const playUrl = new URL("/games/z-dasher/index.html", backendUrl).href;
 
 export default function ZDasher() {

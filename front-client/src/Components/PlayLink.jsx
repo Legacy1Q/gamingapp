@@ -1,3 +1,4 @@
+import { apiBaseUrl } from "../config.js";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "../auth/AuthContext";
@@ -11,7 +12,7 @@ export default function PlayLink({ playUrl, className, children }) {
   if (!user) {
     return <Link className={className} to="/login" state={{ returnTo: location.pathname }}>Log in to play</Link>;
   }
-  const backendUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+  const backendUrl = apiBaseUrl;
   let url;
   try { url = new URL(playUrl, backendUrl); } catch { return <span>Game unavailable</span>; }
   if (!["http:", "https:"].includes(url.protocol)) return <span>Game unavailable</span>;

@@ -19,6 +19,9 @@ const App = () => {
     <Router>
       <AuthProvider>
       <div className="app-container">
+        {import.meta.env.VITE_TEST_DEPLOYMENT === "true" && <p role="note" style={{ padding: "12px", margin: 0, background: "#382900", color: "#fff" }}>
+          Test deployment: accounts, posts and scores may reset without notice. Use a disposable test account. Password recovery is unavailable.
+        </p>}
         <Navbar />
         <main>
           <Routes>

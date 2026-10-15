@@ -1,3 +1,4 @@
+import { apiBaseUrl } from "../config.js";
 import { useEffect, useState } from "react";
 import videoFile from "../assets/stock_video_2.mp4";
 import thumbnail2 from "../assets/thumbnail2.png";
@@ -29,7 +30,7 @@ const Home = () => {
     setRankingsLoading(true);
     setRankingsError("");
     async function loadRankings() {
-      const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+      const base = apiBaseUrl;
       const response = await fetch(new URL("/leaderboards/z-dasher?page=1", base), {
         credentials: "include", cache: "no-store",
       });

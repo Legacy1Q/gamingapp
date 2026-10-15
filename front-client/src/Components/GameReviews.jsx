@@ -22,7 +22,7 @@ export default function GameReviews() {
     let active = true;
     setLoading(true); setLoadError(""); setDraft(null); setConfirmDelete(false);
     async function load() {
-      const games = await reviewRequest("/games");
+      const games = await reviewRequest("/catalog");
       const game = games.find(item => item.title.toLowerCase().replace(/[^a-z0-9]/g, "") === "zdasher");
       if (!game) throw new Error("Reviews will be available when Z-Dasher is listed in the library.");
       const result = await reviewRequest(`/reviews/${game.id}?page=${page}`);

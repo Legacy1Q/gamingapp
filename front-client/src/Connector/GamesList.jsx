@@ -1,14 +1,24 @@
+import { apiBaseUrl } from "../config.js";
 import { useEffect, useState } from "react";
 import GameCard from "../Components/GameCard";
 
 function GamesList() {
   const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5004/games")
-      .then((response) => response.json())
-      .then((data) => setGames(data))
-      .catch((error) => console.error("Error fetching games:", error));
+    fetch(new URL("/catalog", apiBaseUrl))
+      .then((response) => {
+        if (!response.ok) throw new Error("Unable to load games.");
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) throw new Error("Unable to load games.");
+        setGames(data);
+      })
+      .catch(() => setError("Unable to load games. Please try again shortly."))
+      .finally(() => setLoading(false));
   }, []);
 
 
@@ -20,6 +30,9 @@ function GamesList() {
         <span>Explore the games I’m creating.</span>
       </header>
       <div className="game-library-list">
+      {loading && <p role="status">Loading games…</p>}
+      {error && <p role="alert">{error}</p>}
+      {!loading && !error && games.length === 0 && <p>No games available yet.</p>}
 
       {games.map((game) => (
         <GameCard key={game.id} game={game} />

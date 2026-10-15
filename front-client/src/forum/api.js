@@ -1,4 +1,5 @@
-const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+import { apiBaseUrl } from "../config.js";
+const base = apiBaseUrl;
 export async function forumRequest(path, method = "GET", body) {
   try {
     const headers = {};

@@ -1,0 +1,14 @@
+.git
+.local
+.tools
+**/node_modules
+**/dist
+**/bin
+**/obj
+**/.env
+**/.env.*
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/.codex
+**/.aws

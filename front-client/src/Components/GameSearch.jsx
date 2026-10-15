@@ -1,3 +1,4 @@
+import { apiBaseUrl } from "../config.js";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,10 +16,10 @@ export default function GameSearch() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5004";
+    const base = apiBaseUrl;
     async function load() {
       try {
-        const response = await fetch(new URL("/games", base), { signal: controller.signal });
+        const response = await fetch(new URL("/catalog", base), { signal: controller.signal });
         if (!response.ok) throw new Error("Unable to load games.");
         const data = await response.json();
         if (!Array.isArray(data)) throw new Error("Unable to load games.");

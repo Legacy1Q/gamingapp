@@ -1,4 +1,5 @@
-const baseUrl = import.meta.env?.VITE_API_BASE_URL || "http://localhost:5004";
+import { apiBaseUrl } from "../config.js";
+const baseUrl = apiBaseUrl;
 
 async function request(path, options = {}) {
   let response;

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: gameshq-preview
+    runtime: docker
+    plan: free
+    branch: backup/working-desktop
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: Hosting__EdgeHttps
+        value: "true"
