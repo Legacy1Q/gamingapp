@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="top-row">
-        <Link to="/" className="logo">GameHub</Link>
+        <Link to="/" className="logo">GamesHQ</Link>
 
         <GameSearch />
 
