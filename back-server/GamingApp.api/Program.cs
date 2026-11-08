@@ -287,6 +287,22 @@ if (serveFrontend)
         "/forgot-password", "/reset-password", "/leaderboard", "/community", "/community/reports",
         "/about", "/contact", "/support", "/community/{id:int}" })
         app.MapGet(route, (IWebHostEnvironment env) => Results.File(Path.Combine(env.WebRootPath, "index.html"), "text/html"));
+
+    // Render the client 404 for browser navigation, retaining a real HTTP 404.
+    // Missing API endpoints and static/game files must not receive the app shell.
+    app.MapFallback(async (HttpContext context, IWebHostEnvironment env) =>
+    {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        var path = context.Request.Path;
+        var reserved = new[] { "/api", "/auth", "/catalog", "/forum", "/reviews", "/leaderboards", "/assets", "/games/z-dasher", "/health" };
+        if (!HttpMethods.IsGet(context.Request.Method) ||
+            context.Request.GetTypedHeaders().Accept?.Any(value => value.MediaType.Value == "text/html") != true ||
+            reserved.Any(prefix => path.StartsWithSegments(prefix)))
+            return;
+
+        context.Response.ContentType = "text/html; charset=utf-8";
+        await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+    });
 }
 else
 {

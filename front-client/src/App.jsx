@@ -13,6 +13,7 @@ import Community from "./Components/Community";
 import ForumReports from "./Components/ForumReports";
 import Profile from "./Components/Profile";
 import Leaderboard from "./Components/Leaderboard";
+import NotFound from "./Components/NotFound";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/support" element={<Navigate to="/contact" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
